@@ -27,7 +27,7 @@ export class EmployeesService {
     });
   }
 
-  update(id: number, updateEmployeeDto: Prisma.EmployeeUpdateInput) {
+  async update(id: number, updateEmployeeDto: Prisma.EmployeeUpdateInput) {
     return this.databaseService.employee.update({
       where: {
         id,
@@ -36,7 +36,11 @@ export class EmployeesService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} employee`;
+  async remove(id: number) {
+    return this.databaseService.employee.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
